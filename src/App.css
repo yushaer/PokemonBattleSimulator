@@ -1,0 +1,42 @@
+.pokemon-stats{
+    padding: 4px;
+    background-color: #dee9ee;
+}
+.poke-pic{
+    min-width: 250px;
+    height: auto;
+}
+.selectpicker{
+    background-color: #fff
+}
+
+
+.input-group {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100%;
+}
+body {
+    background: url('https://wallpaperaccess.com/full/20993.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+  }
+  .row.small-gutters {
+    margin-right: -10px;
+    margin-left: -10px;
+ }
+ .row.small-gutters > [class^="col-"],
+ .row.small-gutters > [class*=" col-"] {
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+ }
+ 
