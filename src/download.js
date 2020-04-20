@@ -240,7 +240,7 @@ console.log(prog)
 
 
 module.exports.get_Moves =async function() {
-  var Pokemon = require('./Pokemon');
+  //var Pokemon = require('./Pokemon');
     console.log("hi")
      var  Pokedex= require( 'pokedex-promise-v2')
   var P = new Pokedex();
@@ -262,7 +262,7 @@ console.log(prog)
          
 
         
-        console.log(poke_list[i])
+      //  console.log(poke_list[i])
     await P.getMoveByName(poke_list[i].name)
         .then(function(response){
           //console.log(response)
@@ -286,11 +286,26 @@ console.log(prog)
           // })
           var moves=pokemons[i]
         
+          var move={}
+          move.name=moves.name;
+        move.power=moves.power!=null?moves.power:0
+        move.pp=moves.pp;
+        move.priority=moves.priority;
+        move.stat_changes=moves.stat_changes;
+        move.target=moves.target;
+        move.type=moves.type;
+          move.accuracy= moves.accuracy!=null?moves.accuracy:100
+          move.damage_class=moves.damage_class;
+          move.effect_chance=moves.effect_chance;
+          move.effect_changes=moves.effect_changes;
+          move.effect_entries=moves.effect_entries;
+          move.id=moves.id;
+          move.meta=moves.meta;
           
-     
-         to_write.push(moves);
+        
+         to_write.push(move);
       }
-
+      console.log(to_write[10])
        write_to_file("moves",to_write)
   })
  
