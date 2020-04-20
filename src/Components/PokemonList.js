@@ -77,7 +77,7 @@ class PokemonList extends React.Component{
                         return item.type.name +", ";
                       }) : ""
                      } 
-                    </span>
+                    </span>  
                     {this.state.selected_poke?Object.keys(this.state.selected_poke.actual_stats   ).map((key)=>{
                        return (<React.Fragment><br></br><span>{key}:{this.state.selected_poke.actual_stats[key]}</span></React.Fragment>)
                      }) : ""
@@ -107,7 +107,7 @@ export default PokemonList;
 class Stats_Calculator extends React.Component{
     constructor(props){
         super(props)
-        this.state={ ev:{hp:0,atk:0,spatk:0,def:0,spdef:0,spd:0},iv:{hp:0,atk:0,spatk:0,def:0,spdef:0,spd:0},level:1,nature:null}
+        this.state={ ev:{hp:0,atk:0,spatk:0,def:0,spdef:0,spd:0},iv:{hp:0,atk:0,spatk:0,def:0,spdef:0,spd:0},level:1,nature:null,error:null}
         this.handleChange=this.handleChange.bind(this);
         this.updateStats=this.updateStats.bind(this)
         this.selectNature=this.selectNature.bind(this)
@@ -121,7 +121,23 @@ class Stats_Calculator extends React.Component{
      }
     updateStats(e){
         e.preventDefault();
-        this.props.pokemon.setEV(this.state.ev)
+        var sum= 0;
+        Object.keys(this.state.ev).forEach(key => {
+            console.log(this.state.ev[key])
+            sum+=this.state.ev[key]
+        });
+        
+        console.log("sum " +sum)
+        if(sum<=502){
+            this.props.pokemon.setEV(this.state.ev)
+            this.state.error="";
+            this.setState(this.state)
+        }
+        else{
+            this.state.error="No more then 502 ev points allowed plz decrases the amount of ev point you have allowed";
+            this.setState(this.state)
+        }
+
         this.props.pokemon.setIV(this.state.iv)
         this.props.pokemon.setLevel(this.state.level)
         this.props.pokemon.setNature(this.state.nature);
@@ -182,7 +198,9 @@ class Stats_Calculator extends React.Component{
             <React.Fragment>
             <div className="row small-gutters">
                 <div className="col-sm-4">
+
                     <h3 className="text-center" >EV</h3>
+                    <p className="error" style={{color:"red"}}>{this.state.error}</p>
                     <div className="row">
                         {this.render_state_change_input(true,"ev")}
                      </div> 
