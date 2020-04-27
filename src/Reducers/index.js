@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import UserReducer from  './UserReducer';
-import SessionReducer from  './SessionReducer';
-import MessageReducer from './Message_Reducer';
+import teamReducer from  './Team_Reducer';
+// import SessionReducer from  './SessionReducer';
+// import MessageReducer from './Message_Reducer';
 const reducer = combineReducers({
-user:UserReducer,session:SessionReducer,messages:MessageReducer
+team:teamReducer
 });
 export default reducer;

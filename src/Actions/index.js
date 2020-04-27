@@ -1,5 +1,5 @@
-import firebase from '../Components/Firebase';
-import "firebase/firestore";
+// import firebase from '../Components/Firebase';
+// import "firebase/firestore";
 
 export function setUser(user){
     return {type:"setUser",payload:user}
@@ -19,6 +19,15 @@ export function setRedirectionUrl(url){
     
     
 }
+export function addPokemon(pokemon) {
+    return{type:"addPokemon",payload:pokemon}
+    
+}
+export function changePokemon(pokemon) {
+    return{type:"changePokemon",payload:pokemon}
+    
+}
+
 // export const getDefaultProfileUrl  = () => async dispatch => {
 //     var storage = firebase.storage();
 
@@ -35,50 +44,50 @@ export function setRedirectionUrl(url){
 
 
 // }
-export const set_login_status  = () => async dispatch => {
-    try{
-       firebase.auth().onAuthStateChanged(function(user) {
+// export const set_login_status  = () => async dispatch => {
+//     try{
+//        firebase.auth().onAuthStateChanged(function(user) {
         
-            if (user) {
-            // User is signed in.
-            console.log(user.emailVerified)
-                if(user.emailVerified){
+//             if (user) {
+//             // User is signed in.
+//             console.log(user.emailVerified)
+//                 if(user.emailVerified){
                 
-                var user = firebase.auth().currentUser;
+//                 var user = firebase.auth().currentUser;
             
             
             
-                dispatch({type:"login",payload:true})
+//                 dispatch({type:"login",payload:true})
                 
-                }
-                else{
-                    dispatch( {type:"logout",payload:false})
-                }
+//                 }
+//                 else{
+//                     dispatch( {type:"logout",payload:false})
+//                 }
 
         
-            } else {
-            // No user is signed in.that.state.loggedIn=true;
-            dispatch( {type:"logout",payload:false});
-            }
-        });
-    }
-    catch (e) {
-        console.log(e)
-      }
-}
+//             } else {
+//             // No user is signed in.that.state.loggedIn=true;
+//             dispatch( {type:"logout",payload:false});
+//             }
+//         });
+//     }
+//     catch (e) {
+//         console.log(e)
+//       }
+// }
 
-export const get_user  = () => async dispatch => {
-    try{
-       firebase.auth().onAuthStateChanged(function(user) {
+// export const get_user  = () => async dispatch => {
+//     try{
+//        firebase.auth().onAuthStateChanged(function(user) {
         
-            if (user) {
-            // User is signed in.
-            var db = firebase.firestore();
-            db.collection("users").doc(user.uid)
-            .onSnapshot(function(doc) {
-                console.log("Current data: ", doc.data());
-                dispatch({type:"setUser",payload:doc.data()})
-            });
+//             if (user) {
+//             // User is signed in.
+//             var db = firebase.firestore();
+//             db.collection("users").doc(user.uid)
+//             .onSnapshot(function(doc) {
+//                 console.log("Current data: ", doc.data());
+//                 dispatch({type:"setUser",payload:doc.data()})
+//             });
         
           
         
@@ -86,35 +95,35 @@ export const get_user  = () => async dispatch => {
             
             
         
-            }
-        });
-    }
-    catch (e) {
-        console.log(e)
-      }
-}
-export const get_message  = () => async dispatch => {
-    try{
-       firebase.auth().onAuthStateChanged(function(user) {
+//             }
+//         });
+//     }
+//     catch (e) {
+//         console.log(e)
+//       }
+// }
+// export const get_message  = () => async dispatch => {
+//     try{
+//        firebase.auth().onAuthStateChanged(function(user) {
         
-            if (user) {
-            // User is signed in.
-            var db = firebase.firestore();
-            db.collection("messages").orderBy("created").onSnapshot(function(querySnapshot) {
-                var messages = [];
-                querySnapshot.forEach(function(doc) {
-                    messages.push({id: doc.id,user_id:doc.data().user_id,"name":doc.data().Name,"message":doc.data().message,"created":doc.data().created});
+//             if (user) {
+//             // User is signed in.
+//             var db = firebase.firestore();
+//             db.collection("messages").orderBy("created").onSnapshot(function(querySnapshot) {
+//                 var messages = [];
+//                 querySnapshot.forEach(function(doc) {
+//                     messages.push({id: doc.id,user_id:doc.data().user_id,"name":doc.data().Name,"message":doc.data().message,"created":doc.data().created});
                     
-                });
+//                 });
                 
                 
-                var objDiv = document.getElementById("message_div");
-                objDiv.scrollTop = objDiv.scrollHeight;
-                dispatch({type:"get_messages",payload:messages})
+//                 var objDiv = document.getElementById("message_div");
+//                 objDiv.scrollTop = objDiv.scrollHeight;
+//                 dispatch({type:"get_messages",payload:messages})
            
         
           
-          });
+//           });
           
           
         
@@ -122,10 +131,10 @@ export const get_message  = () => async dispatch => {
             
             
         
-            }
-        });
-    }
-    catch (e) {
-        console.log(e)
-      }
-}
+//             }
+//         });
+//     }
+//     catch (e) {
+//         console.log(e)
+//       }
+// }

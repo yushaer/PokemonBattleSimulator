@@ -7,6 +7,7 @@ export default  class Pokemon{
         iv={hp:0,atk:0,spatk:0,def:0,spdef:0,spd:0}
         nature={"name":"hardy","hardy":{}};
         name;
+        learned_moves;
         moves;
         types;
         sprites;
@@ -56,7 +57,9 @@ export default  class Pokemon{
         console.log(this.actual_stats)
     }
     
-
+    setLearned_Moves(move){
+        this.learned_moves=move;
+    }
     setEV(ev){
         this.ev=ev
     }
