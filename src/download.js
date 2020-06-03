@@ -16,73 +16,7 @@ function write_to_file(name,obj){
         console.log("JSON file has been saved.");
     });
   }
-  module.exports.test =async function() {
-    var Pokemon = require('./Pokemon');
-      console.log("hi")
-       var  Pokedex= require( 'pokedex-promise-v2')
-    var P = new Pokedex();
-    var poke_list=[]
-    var pokemons=[]
-
-  await P.getPokemonsList()
-     .then(   async function(response) {
-      poke_list=response.results;
-        let count =0;
-        let prog=0.00
-        let prev_prog=0;
-        for(var i in poke_list){
-        
-           prog=(count)/(poke_list.length)
-        
-console.log(prog)
-      
-           
-
-          
-          //console.log(i)
-      await P.getPokemonByName(poke_list[i].name)
-          .then(function(response){
-            //console.log(response)
-            pokemons.push(response)
-          })
-          .catch(function(error) {
-            console.log('There was an ERROR: ', error);
-          });
-          count+=1
-          prev_prog=prog;
-        }
-       
-    }).then(function(){
-        var to_write=[]
-        for(var i = 0; i < pokemons.length;i++){
-            var stats=pokemons[i].stats.map((item)=>{
-              return {[item.stat.name]:item.base_stat}
-            })
-            var moves=pokemons[i].moves.map((item)=>{
-              return item.move;
-            })
-            pokemons[i].sprites.animated_front="http://play.pokemonshowdown.com/sprites/xyani/"+pokemons[i].name+".gif";
-           pokemon=new Pokemon(stats,pokemons[i].name,moves,pokemons[i].types,pokemons[i].sprites,[],pokemons[i].abilities);
-           to_write.push(pokemon);
-        }
-
-         write_to_file("pokemon",to_write)
-    })
-   
-
- 
-    P.getPokemonByName('eevee') // with Promise
-    .then(function(response) {
-      console.log(response);
-    })
-    .catch(function(error) {
-      console.log('There was an ERROR: ', error);
-    });
-    P.getMoveByName("tackle")
-    .then(function(response) {
-      console.log(response);
-    })
-  }
+  
 
 
   module.exports.get_nature =async function() {
@@ -216,7 +150,7 @@ console.log(prog)
             return item.move;
           })
           pokemons[i].sprites.animated_front="http://play.pokemonshowdown.com/sprites/xyani/"+pokemons[i].name+".gif";
-         pokemon=new Pokemon(stats,pokemons[i].name,moves,pokemons[i].types,pokemons[i].sprites,[],pokemons[i].abilities);
+         pokemon=new Pokemon(stats,pokemons[i].name,moves,pokemons[i].types,pokemons[i].sprites,[],pokemons[i].abilities,pokemons[i].height,pokemons[i].weight);
          to_write.push(pokemon);
       }
 

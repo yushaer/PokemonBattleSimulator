@@ -31,24 +31,7 @@ export default class Moves{
 
 
          }
-         constructor(moves){
-            this.name=moves.name;
-            this.power=moves.power;
-            this.pp=moves.pp;
-            this.priority=moves.priority;
-            this.stat_changes=moves.stat_changes;
-            this.target=moves.target;
-            this.type=moves.type;
-            this.accuracy= moves.accuracy
-            this.damage_class=moves.damage_class;
-            this.effect_chance=moves.effect_chance;
-            this.effect_changes=moves.effect_changes;
-            this.effect_entries=moves.effect_entries;
-            this.id=moves.id;
-            this.meta=moves.meta;
-
-
-         }
+        
          
 
 }

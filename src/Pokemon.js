@@ -1,5 +1,6 @@
-export default  class Pokemon{
-    
+  class Pokemon{
+        height;
+        weight;
   
         base_stats={hp:null,attack:null,'special_attack':null,'defense':null,'special_defense':null,'speed':null};
         actual_stats={hp:null,attack:null,'special_attack':null,'defense':null,'special_defense':null,'speed':null}
@@ -14,17 +15,40 @@ export default  class Pokemon{
         abilities;
         level;
        
-    constructor(stats,name,moves,types,sprites,held_items,abilities){
-        this.base_stats=stats;
-        
-      //  this.actual_stats=this.base_stats;
-        this.name=name;
-        this.moves=moves;
-        this.types=types;
-        this.sprites=sprites;
-        this.abilities=abilities;
-        this.level=1;
-        this.calculate_stats();
+    constructor(pokemon,stats,name,moves,types,sprites,held_items,abilities,height,weight){
+        if(pokemon!=null){
+            this.base_stats=pokemon.base_stats;
+            this.height=pokemon.height;
+            this.weight=pokemon.weight;
+          //  this.actual_stats=this.base_stats;
+            this.name=pokemon.name;
+            this.moves=pokemon.moves;
+            this.types=pokemon.types;
+            this.sprites=pokemon.sprites;
+            this.abilities=pokemon.abilities;
+            this.level=pokemon.level;
+            this.ev=pokemon.ev;
+            this.iv=pokemon.iv;
+            this.nature=pokemon.nature;
+            this.calculate_stats();
+            this.learned_moves=pokemon.learned_moves;
+            
+        }
+        else{
+            this.base_stats=stats;
+            this.height=height;
+            this.weight=weight;
+          //  this.actual_stats=this.base_stats;
+            this.name=name;
+            this.moves=moves;
+            this.types=types;
+            this.sprites=sprites;
+            this.abilities=abilities;
+            this.level=1;
+            this.calculate_stats();
+            this.learned_moves=[null,null,null,null]
+        }
+       
     }
     calculate_HP(){
         var upper=(2*this.base_stats.hp+this.iv.hp+Math.floor(this.ev.hp/4))*this.level
@@ -57,8 +81,8 @@ export default  class Pokemon{
         console.log(this.actual_stats)
     }
     
-    setLearned_Moves(move){
-        this.learned_moves=move;
+    setLearned_Moves(idx,move){
+        this.learned_moves[idx]=move;
     }
     setEV(ev){
         this.ev=ev
@@ -73,7 +97,8 @@ export default  class Pokemon{
         this.level=level;
     }
     test(){
-        console.log("test")
+        return "test"
     }
     
 }
+module.exports=Pokemon

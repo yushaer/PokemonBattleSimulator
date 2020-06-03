@@ -7,6 +7,7 @@ import Pokemon from '../Pokemon'
 import Natures from '../natures.json'
 import { connect } from 'react-redux';
 import {addPokemon,changePokemon } from '../Actions/'
+import $ from 'jquery'
 class Stats_Calculator extends React.Component{
     constructor(props){
         super(props)
@@ -22,6 +23,10 @@ class Stats_Calculator extends React.Component{
        
       
      }
+     componentDidMount(){
+       
+   ;
+    }
     updateStats(e){
         e.preventDefault();
         var sum= 0;
@@ -139,12 +144,16 @@ class Stats_Calculator extends React.Component{
             </br>
             <div className="input-group mb-3">
             <div className="input-group-prepend">
-                <label className="input-group-text" htmlFor="inputGroupSelect01">Choose nature</label>
+                <label className="input-group-text" htmlFor="inputGroupSelect01"> Choose Nature</label>
             </div>
-            <select className=" form-control"   id="inputGroupSelect01"  onChange={this.selectNature } data-style="sel" data-show-subtext="true" data-live-search="true">
-                <option selected>Choose Nature</option>
-                {Natures.map((item,idx)=>(<option key={idx} value={idx}>{item.name}</option>))}
-            </select>
+           
+             
+                
+                <select className=" form-control"    id="inputGroupSelect01"  onChange={this.selectNature } data-style="sel" data-show-subtext="true" data-live-search="true">
+                    <option selected>Choose Nature</option>
+                    {Natures.map((item,idx)=>(<option key={idx} value={idx}>{item.name}</option>))}
+                </select>
+             
             </div> 
             </div>
             </div>
