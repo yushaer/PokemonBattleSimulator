@@ -16,6 +16,13 @@ import 'bootstrap/dist/js/bootstrap.min'
 
  import 'bootstrap-select/dist/js/bootstrap-select.min'
  import 'popper.js/dist/popper.min'
+ import Teams from './Teams'
+ import {
+    BrowserRouter,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
  var Pokemon = require('../Pokemon');
 class PokemonList extends React.Component{
     constructor(props){
@@ -92,15 +99,8 @@ class PokemonList extends React.Component{
 
         return(
             <section className="choose-pokemon">
-            <h2>Team</h2>
-  <div class="d-flex flex-row bg-secondary mb-3">
-  {this.props.team.map((item)=>{
-   return( <div class="p-2 "><img  style={{"maxWidth":"40px"}} src={item.pokemon.sprites.animated_front}  ></img></div>)
-  })
-       
-  }
-  
-</div>
+            <Teams player_team={true}></Teams>
+            <Link to="/pokemon-battler">Pokemon battler</Link>
             <h2 className="text-center">Pokemon Select</h2>
             <div className="row no-gutters align-center d-flex justify-content-center">
             
